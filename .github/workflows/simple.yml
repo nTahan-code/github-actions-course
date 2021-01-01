@@ -2,13 +2,17 @@ name: Shell Commands
 
 on: [push]
 
-jobs:
+#Put jobs under the job tab
+jobs: 
+  #Creates a linux virtual machine to test code
   run-shell-command:
     runs-on: ubuntu-latest
     steps: 
+      #Name is the name of the command, run is the actual command
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script 
+      #Use the | character to run multiple commands
         run: |
            node -v 
            npm -v
