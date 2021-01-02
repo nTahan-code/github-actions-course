@@ -1,17 +1,18 @@
 name: Actions Workflow
 
 on: 
-  # push:
-  schedule:
+  push:
+
+  repository_dispatch: 
+    types: [build]
+  #schedule:
     #- cron: "* * * * *" #Min, hours, day of month, month, day of the week
-    - cron: "25 14 2 JAN *"
+    #- cron: "25 14 2 JAN *"
     # * mean any time, can have several values in each spot for example: 15,17.
     # 1-3 runs between 1 and 3
     # 0/15 runs every 15th from 0-59
     # "0 12,2 1 1 *" runs at 12:00 and 2:00 UTC on the first of January
     # 0-6 for days of the week starting with Sunday
-
-  # push
   pull_request:
     types: [closed, assigned, opened, reopened]
 
