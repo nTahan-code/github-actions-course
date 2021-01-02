@@ -20,6 +20,8 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: payload
+        run: echo ${{ github.event.client_payload.env }}
       - name: List Files
         run: |
           pwd
@@ -29,7 +31,7 @@ jobs:
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
           # git clone git@github:$GITHUB_REPOSITORY
-          #
+          # git checkout $GITHUB_SHA
       - name: Checkout
         uses: actions/checkout@v1
       - name: List Files After Checkout
