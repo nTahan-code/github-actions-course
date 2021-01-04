@@ -1,7 +1,20 @@
 name: Actions Workflow
 
-on: 
+on:
   push:
+    branches:
+      - Development
+      - 'feature/*' #Matches anything that starts with feature/, doesn't match feature/feat/something. Need feature/** to match anything after feature
+      - '!feature/featC' #Ignores this branch
+    #tags:
+    #  - v1.*
+
+    paths:
+      - '**.yml'
+      - '**.python'
+    # Cannot use branches and branches-ignore at the same time
+    # Cannot use tags and tags-ignore at the same time
+    # Cannot use paths and paths-ignore at the same time
 
   repository_dispatch: 
     types: [build]
