@@ -10,8 +10,17 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
         #Run the job for each of these three versions
         node_version: [6,8,10]
-      max-parallel: 2 #Limit the number of jobs running in parallel
+        include:
+          - os: ubuntu-latest
+            node_version: 8
+            is_ubuntu_8: "true"
+        exclude:
+          - os: windows-latest
+            node_version: 6
+      max-parallel: 3 #Limit the number of jobs running in parallel
     runs-on: ${{ matrix.os }}
+    env:
+      IS_UBUNTU_8: ${{ matrix.is_ubuntu_8 }}
     steps:
       - name: Log Node Version
         run: node -v
@@ -19,5 +28,7 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - name: Log Node Version
-        run: node -v
+        run: |
+          node -v
+          echo $IS_UBUNTU_8
   
