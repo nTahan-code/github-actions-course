@@ -7,11 +7,14 @@ jobs:
   #Creates a linux virtual machine to test code
   run-shell-command:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
     steps: 
       #Name is the name of the command, run is the actual command
       - name: echo a string
         run: echo "Hello World"
+        continue-on-error: true
       - name: multiline script 
+        if: failure()
       #Use the | character to run multiple commands
         run: |
            node -v 
